@@ -1,17 +1,12 @@
-import './App.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import "./App.css";
 
-import React, { Component } from 'react';
-import { } from 'react-bootstrap';
+import React, { Component } from "react";
+import {} from "react-bootstrap";
 
 class App extends Component {
-  render() {
-    return (
-      <div>
-
-      </div>
-    );
-  }
+    render() {
+        return "Welcome";
+    }
 }
 
 export default App;
