@@ -1,26 +1,40 @@
-import React, { Component } from "react";
+import React, { CSSProperties } from "react";
 
-import infoIcon from "../icons/info.svg";
+import home from "../icons/home.svg";
+import info from "../icons/info.svg";
+import mail from "../icons/mail.svg";
+import navigation from "../icons/navigation.svg";
+import shoppingCart from "../icons/shopping-cart.svg";
 
 const iconsMap: { [key: string]: string } = {
-    info: infoIcon
+    home,
+    info,
+    mail,
+    navigation,
+    shoppingCart
 };
 
 export enum IconType {
-    info = "info"
+    home = "home",
+    info = "info",
+    mail = "mail",
+    navigation = "navigation",
+    shoppingCart = "shoppingCart"
 }
 
 interface IProps {
-    icon: IconType;
+    style?: CSSProperties;
+    type: IconType;
 }
 
-class Icon extends Component<IProps> {
-    constructor(props: IProps) {
-        super(props);
-    }
-
+class Icon extends React.Component<IProps> {
     render() {
-        return <img src={iconsMap[IconType[this.props.icon]]} />;
+        return (
+            <img
+                style={{ ...this.props.style }}
+                src={iconsMap[IconType[this.props.type]]}
+            />
+        );
     }
 }
 
