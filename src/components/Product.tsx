@@ -13,10 +13,10 @@ class Product extends React.Component<IProps, any> {
     render() {
         return (
             <div className="product" key={this.props.data.name}>
-                <div onClick={this.onClick}>
+                <a href="#" onClick={this.onClick}>
                     <Icon type={IconType.info} />
                     <span>{this.props.data.name}</span>
-                </div>
+                </a>
                 {this.props.currentProduct == this.props.data.name ? (
                     <>
                         <img className="photo" src={this.props.data.image} />
@@ -27,7 +27,8 @@ class Product extends React.Component<IProps, any> {
         );
     }
 
-    onClick = () => {
+    onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
         if (this.props.currentProduct == this.props.data.name) {
             this.props.onProductClick("");
         } else {

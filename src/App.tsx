@@ -65,12 +65,17 @@ class App extends React.Component<any, IState> {
                     <Page path="/products" currentPath={this.state.currentPath}>
                         {products.map(product => {
                             return (
-                                <Product
-                                    key={product.name}
-                                    onProductClick={this.onProductClick}
-                                    currentProduct={this.state.currentProduct}
-                                    data={product}
-                                />
+                                <>
+                                    <Product
+                                        key={product.name}
+                                        onProductClick={this.onProductClick}
+                                        currentProduct={
+                                            this.state.currentProduct
+                                        }
+                                        data={product}
+                                    />
+                                    <br />
+                                </>
                             );
                         })}
                     </Page>
@@ -101,21 +106,32 @@ class App extends React.Component<any, IState> {
 
                         <Form>
                             <Form.Group>
-                                <Form.Label>Name</Form.Label>
-                                <Form.Control placeholder="John Doe" />
+                                <Form.Label htmlFor="name-input">
+                                    Name
+                                </Form.Label>
+                                <Form.Control
+                                    id="name-input"
+                                    placeholder="John Doe"
+                                />
 
                                 <br />
 
-                                <Form.Label>Email</Form.Label>
+                                <Form.Label htmlFor="email-input">
+                                    Email
+                                </Form.Label>
                                 <Form.Control
+                                    id="email-input"
                                     placeholder="johndoe@example.com"
                                     type="email"
                                 />
 
                                 <br />
 
-                                <Form.Label>Comment</Form.Label>
+                                <Form.Label htmlFor="comment-input">
+                                    Comment
+                                </Form.Label>
                                 <Form.Control
+                                    id="comment-input"
                                     placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id ornare arcu odio ut sem nulla pharetra diam."
                                     as="textarea"
                                 />
