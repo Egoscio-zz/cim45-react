@@ -12,18 +12,18 @@ interface IProps {
 class Product extends React.Component<IProps, any> {
     render() {
         return (
-            <>
-                <div onClick={this.onClick} key={this.props.data.name}>
+            <div className="product" key={this.props.data.name}>
+                <div onClick={this.onClick}>
                     <Icon type={IconType.info} />
                     <span>{this.props.data.name}</span>
-                    {this.props.currentProduct == this.props.data.name ? (
-                        <>
-                            <img src={this.props.data.image} />
-                            <p>{this.props.data.description}</p>
-                        </>
-                    ) : null}
                 </div>
-            </>
+                {this.props.currentProduct == this.props.data.name ? (
+                    <>
+                        <img className="photo" src={this.props.data.image} />
+                        <p>{this.props.data.description}</p>
+                    </>
+                ) : null}
+            </div>
         );
     }
 

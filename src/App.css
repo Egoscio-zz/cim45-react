@@ -2,3 +2,13 @@
     display: block;
     margin: 0 auto;
 }
+
+.product img.photo {
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.title {
+    margin: 1.5em 0;
+}
