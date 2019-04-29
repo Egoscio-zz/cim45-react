@@ -5,6 +5,9 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/leaflet/dist/leaflet.css";
+import "../node_modules/leaflet/dist/leaflet.js";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

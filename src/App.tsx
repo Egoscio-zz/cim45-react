@@ -6,12 +6,19 @@ import { Navbar, Nav, Form, Button } from "react-bootstrap";
 import Icon, { IconType } from "./components/Icon";
 import Page from "./components/Page";
 import Product from "./components/Product";
+import MapView from "./components/MapView";
 
 import { tabs, products } from "./data";
+
+export interface IPosition {
+    error?: PositionError;
+    value?: Position;
+}
 
 interface IState {
     currentPath: string;
     currentProduct: string;
+    position: IPosition;
 }
 
 class App extends React.Component<any, IState> {
@@ -19,9 +26,23 @@ class App extends React.Component<any, IState> {
         super(props);
         this.state = {
             currentPath: tabs[0].path,
-            currentProduct: ""
+            currentProduct: "",
+            position: {}
         };
     }
+
+    requestPosition = () => {
+        navigator.geolocation.getCurrentPosition(
+            (value: Position) =>
+                this.setState({
+                    position: { value, error: undefined }
+                }),
+            (error: PositionError) =>
+                this.setState({
+                    position: { error, value: undefined }
+                })
+        );
+    };
 
     render() {
         const tab = tabs.find(tab => tab.path === this.state.currentPath);
@@ -65,9 +86,8 @@ class App extends React.Component<any, IState> {
                     <Page path="/products" currentPath={this.state.currentPath}>
                         {products.map(product => {
                             return (
-                                <>
+                                <React.Fragment key={product.name}>
                                     <Product
-                                        key={product.name}
                                         onProductClick={this.onProductClick}
                                         currentProduct={
                                             this.state.currentProduct
@@ -75,7 +95,7 @@ class App extends React.Component<any, IState> {
                                         data={product}
                                     />
                                     <br />
-                                </>
+                                </React.Fragment>
                             );
                         })}
                     </Page>
@@ -143,8 +163,23 @@ class App extends React.Component<any, IState> {
                         </Form>
                     </Page>
                     <Page path="/location" currentPath={this.state.currentPath}>
-                        Once we open our store, we'll provide you with its
-                        location, and directions from your current location!
+                        {this.state.position.value ? (
+                            <p>
+                                Your current location is indicated in the map
+                                below. We are working on implementing directions
+                                in our map system.
+                            </p>
+                        ) : null}
+                        {this.state.position.error ? (
+                            <p>
+                                Error ({this.state.position.error.code}):{" "}
+                                {this.state.position.error.message}
+                            </p>
+                        ) : null}
+                        <MapView
+                            position={this.state.position}
+                            requestPosition={this.requestPosition}
+                        />
                     </Page>
                 </div>
             </>
