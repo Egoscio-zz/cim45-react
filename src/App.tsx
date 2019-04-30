@@ -164,11 +164,21 @@ class App extends React.Component<any, IState> {
                     </Page>
                     <Page path="/location" currentPath={this.state.currentPath}>
                         {this.state.position.value ? (
-                            <p>
-                                Your current location is indicated in the map
-                                below. We are working on implementing directions
-                                in our map system.
-                            </p>
+                            <>
+                                <p>
+                                    Your current location is indicated in the
+                                    map below. We are working on implementing
+                                    directions in our map system.
+                                </p>
+                                <p>
+                                    Latitude:{" "}
+                                    {this.state.position.value.coords.latitude}
+                                </p>
+                                <p>
+                                    Longitude:{" "}
+                                    {this.state.position.value.coords.longitude}
+                                </p>
+                            </>
                         ) : null}
                         {this.state.position.error ? (
                             <p>
